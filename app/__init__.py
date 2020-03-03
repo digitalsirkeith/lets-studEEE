@@ -1,18 +1,23 @@
-# import os
-# from flask import Flask
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
-# from flask_cors import CORS
+import os
+from . import config
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_cors import CORS
 
-# app = Flask(__name__, instance_relative_config=True)
-# app.config.from_mapping(
-#     SECRET_KEY=os.environ['SECRET_KEY'], 
-#     SQLALCHEMY_DATABASE_URI=os.environ['DATABASE_URL'],
-#     SQLALCHEMY_TRACK_MODIFICATIONS=False
-# )
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_mapping(
+    SECRET_KEY=config.SECRET_KEY, 
+    SQLALCHEMY_DATABASE_URI=config.DATABASE_URI,
+    SQLALCHEMY_TRACK_MODIFICATIONS=False
+)
 
-# db = SQLAlchemy(app)
-# migrate = Migrate(app, db)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+from .blueprints import home
+app.register_blueprint(home.bp)
+
 
 # from .database import init_app
 # init_app(app)
@@ -35,13 +40,4 @@
 # from flaskr.database import init_db
 # init_db()
 
-# try:
-#     os.mkdir(os.getenv('FILES_LOC'))
-# except FileExistsError:
-#     pass
-# try:
-#     os.mkdir(os.getenv('TEMP_NAV_LOC'))
-# except FileExistsError:
-#     pass
-
-# CORS(app)
+CORS(app)

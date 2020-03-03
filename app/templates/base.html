@@ -1,0 +1,26 @@
+<!doctype html>
+<html class="has-background-white-ter has-navbar-fixed-top">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>Let's StudEEE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0;">
+    <script type=text/javascript src="{{url_for('static', filename='js/navbutton.js') }}"></script>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+    <div class="notification is-dark has-text-centered">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</body>
+
+</html>
