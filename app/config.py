@@ -6,20 +6,14 @@ environment = getenv('FLASK_ENV')
 if environment is None:
     raise KeyError
 
-if environment == 'development':
-    environment = 'DEV'
-elif environment == 'production':
-    environment = 'PROD'
-else:
-    raise KeyError
+USER            = getenv('USER')
+SECRET_KEY      = getenv('SECRET_KEY')
+DATABASE_NAME   = getenv('DATABASE_NAME')
 
-USER            = getenv(f'{environment}_USER')
-SECRET_KEY      = getenv(f'{environment}_SECRET_KEY')
-
-if environment == 'DEV':
-    DATABASE_URI    = f'postgresql://{USER}:{SECRET_KEY}@localhost'
+if environment == 'dev':
+    DATABASE_URI    = f'postgresql://{USER}@localhost/{DATABASE_NAME}'
 else:
-    DATABASE_URI    = getenv(f'{environment}_DATABASE_URI')
+    DATABASE_URI    = getenv(f'DATABASE_URL')
 
 if __name__ == '__main__':
     print(f'USER: {USER}')

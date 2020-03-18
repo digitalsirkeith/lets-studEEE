@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request
+from ..models.user import User
 
 bp = Blueprint('home', __name__)
 
