@@ -6,12 +6,19 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Text, nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    contact_number = db.Column(db.String(255), nullable=False)
     roles = db.relationship('Role', secondary='user_roles')
 
-    def __init__(self, username, email, roles):
+    def __init__(self, username, email, password, contact_number):
         self.username = username
         self.email = email
-        self.roles = roles
+        self.contact_number = contact_number
+        self.password = password
+        self.roles = []
+
+    @staticmethod
+    def get(self, user_id):
+        return self.query.filter(self.id == user_id).one_or_none()
 
 class Role(db.Model):
     __tablename__ = 'roles'
