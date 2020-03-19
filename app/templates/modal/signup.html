@@ -5,7 +5,7 @@
             <p class="modal-card-title">Sign-up</p>
             <button class="delete modal-button-close" aria-label="close"></button>
         </header>
-        <form method="post">
+        <form method="post" id="signup-form" onsubmit="return verify_then_submit()">
             <section class="modal-card-body">
                 <div class="field">
                     <div class="control is-expanded has-icons-left has-icons-right">
@@ -14,8 +14,9 @@
                             <i class="fa fa-envelope"></i>
                         </span>
                         <span class="icon is-small is-right">
-                            <i class="fa"></i>
+                            <i class="fa" id="email-info-icon"></i>
                         </span>
+                        <p class="help is-danger" id="email-info"></p>
                     </div>
                 </div>
                 <div class="field">
@@ -26,8 +27,9 @@
                             <i class="fa fa-user"></i>
                         </span>
                         <span class="icon is-small is-right">
-                            <i class="fa"></i>
+                            <i class="fa" id="username-info-icon"></i>
                         </span>
+                        <p class="help is-danger" id="username-info"></p>
                     </div>
                 </div>
                 <div class="field">
@@ -59,7 +61,7 @@
                 </div>
                 <div class="control">
                     <label class="checkbox">
-                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                        <input type="checkbox" required> I agree to the <a href="#">terms and conditions</a>
                     </label>
                 </div>
             </section>
@@ -73,3 +75,37 @@
         </form>
     </div>
 </div>
+
+{% block script %}
+<script>
+    function verify_then_submit() {
+        var username = document.getElementById("signup-username").textContent;
+        var email = document.getElementById("signup-email").textContent;
+        var submit = false;
+
+        jQuery.ajax({
+            url: "http://{{ request.host }}/verify?username=" + username + "&email=" + email,
+            success: function (data) {
+                if (data.email_available && data.username_available) {
+                    submit =  true;
+                } else {
+                    if (!data.email_available) {
+                        document.getElementById("email-info").textContent = "This email is not available.";
+                        document.getElementById("signup-email").classList.add("is-danger");
+                        document.getElementById("email-info-icon").classList.add("fa-exclamation-triangle");
+                    } 
+                    
+                    if (!data.username_available) {
+                        document.getElementById("username-info").textContent = "This username is not available.";
+                        document.getElementById("signup-username").classList.add("is-danger");
+                        document.getElementById("username-info-icon").classList.add("fa-exclamation-triangle");
+                    }
+                    submit = false;
+                }
+            },
+            async: false
+        });
+        return submit
+    }
+</script>
+{% endblock %}
