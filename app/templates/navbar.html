@@ -27,24 +27,113 @@
         {% if user.is_authenticated %}
         <div class="navbar-end">
             <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-link is-arrowless">
+                    <span class="icon">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span>
+                        New
+                    </span>
+                </div>
+                <div class="navbar-dropdown is-right">
+                    <a class="navbar-item" href="#">
+                        <span class="icon has-text-danger">
+                            <i class="fa fa-bullhorn"></i>
+                        </span>
+                        <span>Announcement</span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span class="icon has-text-success">
+                            <i class="fa fa-dollar"></i>
+                        </span>
+                        <span>Promotion</span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span class="icon has-text-link">
+                            <i class="fa fa-users"></i>
+                        </span>
+                        <span>Study Session</span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-link is-arrowless">
+                    <span class="icon has-text-danger">
+                        <i class="fa fa-bell"></i>
+                    </span>
+                    <span>
+                        Notifications
+                    </span>
+                </div>
+                <div class="navbar-dropdown is-right">
+                    <a class="navbar-item" href="#">
+                        <span>
+                            <span class="icon has-text-link">
+                                <i class="fa fa-users"></i>
+                            </span>
+                            <strong>New Study Date</strong>
+                            <br>
+                            <span class="icon"></span>
+                            digitalsirkeith has posted a new study session near you.
+                        </span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span>
+                            <span class="icon has-text-primary">
+                                <i class="fa fa-hourglass-start"></i>
+                            </span>
+                            <strong>Reminder</strong>
+                            <br>
+                            <span class="icon"></span>
+                            You have an upcoming study session today at <strong>11:30 AM</strong>.
+                        </span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span>
+                            <span class="icon has-text-success">
+                                <i class="fa fa-users"></i>
+                            </span>
+                            <strong>Update</strong>
+                            <br>
+                            <span class="icon"></span>
+                            airenucl123 joined your study session on <strong>CoE 134</strong>.
+                        </span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span>
+                            <span class="icon">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <strong>See More</strong>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link">
                     {{user.username}}
                 </div>
-                <div class="navbar-dropdown">
+                <div class="navbar-dropdown is-right">
                     <a class="navbar-item" href="#">
-                        <span class="icon">
+                        <span class="icon has-text-link">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <span>Change Password</span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span class="icon has-text-primary">
                             <i class="fa fa-user"></i>
                         </span>
                         <span>Profile</span>
                     </a>
                     <a class="navbar-item" href="#">
-                        <span class="icon">
+                        <span class="icon has-text-warning">
                             <i class="fa fa-cog"></i>
                         </span>
                         <span>Settings</span>
                     </a>
                     <a class="navbar-item" href="{{ url_for('auth.logout') }}">
-                        <span class="icon">
+                        <span class="icon has-text-danger">
                             <i class="fa fa-sign-out"></i>
                         </span>
                         <span>Logout</span>

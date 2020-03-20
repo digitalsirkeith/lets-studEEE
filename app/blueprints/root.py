@@ -8,4 +8,7 @@ bp = Blueprint('root', __name__)
 @bp.route('/', methods=('GET',))
 def root():
     if request.method == 'GET':
-        return render_template('root.html', login_form=LoginForm(), signup_form=SignupForm(), user=current_user)
+        if current_user.is_authenticated:
+            return render_template('study/home.html', user=current_user)
+        else:
+            return render_template('root.html', login_form=LoginForm(), signup_form=SignupForm(), user=current_user)
