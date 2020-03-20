@@ -5,11 +5,12 @@
             <p class="modal-card-title">Sign-up</p>
             <button class="delete modal-button-close" aria-label="close"></button>
         </header>
-        <form method="post" id="signup-form" onsubmit="return verify_then_submit()">
+        <form method="post" id="signup-form" onsubmit="return verify_then_submit()" action="/signup">
+            {{ signup_form.csrf_token }}
             <section class="modal-card-body">
                 <div class="field">
                     <div class="control is-expanded has-icons-left has-icons-right">
-                        <input class="input" type="email" name="email" id="signup-email" placeholder="Email" required>
+                        {{ signup_form.email(class_="input", id="signup-email", placeholder="Email", type="email") }}
                         <span class="icon is-small is-left">
                             <i class="fa fa-envelope"></i>
                         </span>
@@ -21,8 +22,7 @@
                 </div>
                 <div class="field">
                     <div class="control is-expanded has-icons-left has-icons-right">
-                        <input class="input" type="text" name="username" id="signup-username" placeholder="Username"
-                            required>
+                        {{ signup_form.username(class_="input", id="signup-username", placeholder="Username") }}
                         <span class="icon is-small is-left">
                             <i class="fa fa-user"></i>
                         </span>
@@ -34,8 +34,7 @@
                 </div>
                 <div class="field">
                     <div class="control is-expanded has-icons-left">
-                        <input class="input" type="password" name="password" id="signup-password" placeholder="Password"
-                            required>
+                        {{ signup_form.password(class_="input", id="signup-password", placeholder="Password") }}
                         <span class="icon is-small is-left">
                             <i class="fa fa-lock"></i>
                         </span>
@@ -43,8 +42,8 @@
                 </div>
                 <div class="field">
                     <div class="control is-expanded has-icons-left">
-                        <input class="input" type="password" name="confirmpassword" id="signup-confirm-password"
-                            placeholder="Confirm Password" required>
+                        {{ signup_form.confirm(class_="input", id="signup-confirm-password", 
+                            placeholder="Confirm Password") }}
                         <span class="icon is-small is-left">
                             <i class="fa fa-lock"></i>
                         </span>
@@ -52,17 +51,19 @@
                 </div>
                 <div class="field">
                     <div class="control is-expanded has-icons-left">
-                        <input class="input" type="tel" name="num" id="signup-num" placeholder="Contact Number"
-                            required>
+                        {{ signup_form.contact_number(class_="input", id="signup-num", 
+                            placeholder="Contact Number", type="tel") }}
                         <span class="icon is-small is-left">
                             <i class="fa fa-phone"></i>
                         </span>
                     </div>
                 </div>
-                <div class="control">
-                    <label class="checkbox">
-                        <input type="checkbox" required> I agree to the <a href="#">terms and conditions</a>
-                    </label>
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                            {{ signup_form.tc_checkbox }} I agree to the <a href="#">terms and conditions</a>
+                        </label>
+                    </div>
                 </div>
             </section>
             <footer class="modal-card-foot">
@@ -87,14 +88,14 @@
             url: "http://{{ request.host }}/verify?username=" + username + "&email=" + email,
             success: function (data) {
                 if (data.email_available && data.username_available) {
-                    submit =  true;
+                    submit = true;
                 } else {
                     if (!data.email_available) {
                         document.getElementById("email-info").textContent = "This email is not available.";
                         document.getElementById("signup-email").classList.add("is-danger");
                         document.getElementById("email-info-icon").classList.add("fa-exclamation-triangle");
-                    } 
-                    
+                    }
+
                     if (!data.username_available) {
                         document.getElementById("username-info").textContent = "This username is not available.";
                         document.getElementById("signup-username").classList.add("is-danger");

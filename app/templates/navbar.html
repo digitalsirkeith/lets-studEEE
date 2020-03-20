@@ -24,6 +24,35 @@
                 <span>Home</span>
             </a>
         </div>
+        {% if user.is_authenticated %}
+        <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-link">
+                    {{user.username}}
+                </div>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="#">
+                        <span class="icon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <span>Profile</span>
+                    </a>
+                    <a class="navbar-item" href="#">
+                        <span class="icon">
+                            <i class="fa fa-cog"></i>
+                        </span>
+                        <span>Settings</span>
+                    </a>
+                    <a class="navbar-item" href="{{ url_for('auth.logout') }}">
+                        <span class="icon">
+                            <i class="fa fa-sign-out"></i>
+                        </span>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% else %}
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
@@ -36,5 +65,6 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 </nav>

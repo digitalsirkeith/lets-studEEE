@@ -15,18 +15,19 @@ app.config.from_mapping(
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-login_manager = LoginManager()
-login_manager.init_app(app)
+login_manager = LoginManager(app)
 
-from .blueprints import root, verify
+from .blueprints import root, verify, auth
 app.register_blueprint(root.bp)
 app.register_blueprint(verify.bp)
+app.register_blueprint(auth.bp)
 
 from app.database import init_app
 init_app(app)
 
 CORS(app)
 
+from app.models.user import User
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.query.get(int(user_id))

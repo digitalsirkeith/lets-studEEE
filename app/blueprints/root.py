@@ -1,14 +1,11 @@
-from flask import Blueprint, render_template, request, session
-from flask_login import login_user
-from ..models.user import User
+from flask import Blueprint, render_template, request, session, flash
+from flask_login import login_user, current_user
+from app.models.user import User
+from app.form import LoginForm, SignupForm
 
 bp = Blueprint('root', __name__)
 
-@bp.route('/', methods=('GET','POST'))
+@bp.route('/', methods=('GET',))
 def root():
     if request.method == 'GET':
-        return render_template('root.html')
-    else:
-        if 'email' in request.form and 'password' in request.form:
-            login_user(user)
-        return render_template('root.html')
+        return render_template('root.html', login_form=LoginForm(), signup_form=SignupForm(), user=current_user)
