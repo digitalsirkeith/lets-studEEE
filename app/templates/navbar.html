@@ -17,23 +17,31 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
+            {% if user.is_authenticated %}
+            <div class="navbar-item field">
+                <p class="control has-icons-right">
+                    <input class="input" type="search" placeholder="Search...">
+                    <span class="icon is-small is-right">
+                        <i class="fa fa-search"></i>
+                    </span>
+                </p>
+            </div>
+            {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+        <div class="navbar-end">
             <a href="{{ url_for('root.root') }}" class="navbar-item">
                 <span class="icon">
                     <i class="fa fa-home"></i>
                 </span>
                 <span>Home</span>
             </a>
-        </div>
-        {% if user.is_authenticated %}
-        <div class="navbar-end">
             <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link is-arrowless">
                     <span class="icon">
                         <i class="fa fa-plus"></i>
                     </span>
-                    <span>
-                        New
-                    </span>
+                    <span>New</span>
                 </div>
                 <div class="navbar-dropdown is-right">
                     <a class="navbar-item" href="#">
