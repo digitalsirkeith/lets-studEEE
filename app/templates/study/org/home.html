@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="hero has-text-left is-black">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                No organizations
+            </h1>
+            <h2 class="subtitle">
+                You are not assigned to any organizations yet.
+                <!-- A study date application for university students. -->
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-one-third">
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical is-parent">
+                    <article class="tile is-child is-dark notification">
+                        <p class="title">Join an organization</p>
+                        <div class="content">
+                            Join an already existing organization. Just click <strong>Join</strong> below.
+                            This will require the approval of the organization head.
+                        </div>
+                        <a class="button is-fullwidth" href="{{url_for('org.join')}}">Join</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div class="column is-one-third">
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical is-parent">
+                    <article class="tile is-child is-dark notification">
+                        <p class="title">Create an organisation</p>
+                        <div class="content">
+                            Create a new organization. Just click <strong>Create</strong> below. 
+                            Note that approval of the new organization may take 2-3 days.
+                        </div>
+                        <a class="button is-fullwidth" href="{{url_for('org.create')}}">Create</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
+</section>
+{% endblock %}

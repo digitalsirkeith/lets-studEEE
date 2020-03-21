@@ -17,10 +17,11 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
-from .blueprints import root, verify, auth
+from .blueprints import root, verify, auth, org
 app.register_blueprint(root.bp)
 app.register_blueprint(verify.bp)
 app.register_blueprint(auth.bp)
+app.register_blueprint(org.bp)
 
 from app.database import init_app
 init_app(app)
