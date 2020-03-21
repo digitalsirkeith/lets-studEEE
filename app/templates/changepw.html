@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="hero has-text-left is-black">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Change Password
+            </h1>
+            <h2 class="subtitle">
+                Update user credentials here.
+                <!-- A study date application for university students. -->
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-one-half">
+            <h1 class="title">Change Password</h1>
+            <form class="form" method="POST">
+                {{form.csrf_token}}
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.old_password(class_="input", placeholder="Old Password")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.new_password(class_="input", placeholder="New Password")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.confirm(class_="input", placeholder="Confirm New Password")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <button class="button is-fullwidth is-dark">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="column"></div>
+    </div>
+</section>
+{% endblock %}

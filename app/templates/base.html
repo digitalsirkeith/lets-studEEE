@@ -20,10 +20,12 @@
     <header>
         {% block header %}{% endblock %}
     </header>
-    {% for message in get_flashed_messages() %}
-    <div class="notification is-danger has-text-centered">
-        {{ message }}
-    </div>
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+        {% if category == 'error' %}
+        <div class="notification is-danger has-text-centered">
+            {{ message }}
+        </div>
+        {% endif %}
     {% endfor %}
     {% block content %}{% endblock %}
 </body>

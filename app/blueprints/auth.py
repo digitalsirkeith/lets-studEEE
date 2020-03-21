@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, request, session, flash, url_for, redirect
+from flask import Blueprint, render_template, flash, url_for, redirect
 from flask_login import login_user, logout_user, login_required
 from app.models.user import User, Role
-from app.form import LoginForm, SignupForm
+from app.forms.auth import LoginForm, SignupForm
 from app import db
 
 bp = Blueprint('auth', __name__)
@@ -14,9 +14,9 @@ def login():
         user = User.query.filter(User.email == login_form.email.data).one_or_none()
 
         if user is None:
-            flash('Email is not registered to a user!')
+            flash('Email is not registered to a user!', 'error')
         elif not user.check_password(login_form.password.data):
-            flash('Incorrect password!')
+            flash('Incorrect password!', 'error')
         else:
             login_user(user)
     return redirect(url_for('root.root'))
@@ -36,11 +36,9 @@ def signup():
         user_from_username = User.query.filter(User.username == signup_form.username.data).one_or_none()
 
         if user_from_email:
-            flash('Email is already registed to another user!')
+            flash('Email is already registed to another user!', 'error')
         elif user_from_username:
-            flash('Username is already in use!')
-        elif signup_form.password.data != signup_form.confirm.data:
-            flash('Passwords must match!')
+            flash('Username is already in use!', 'error')
         else:
             user = User(username=signup_form.username.data, 
                         email=signup_form.email.data,
