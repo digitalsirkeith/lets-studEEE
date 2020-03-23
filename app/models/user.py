@@ -1,4 +1,3 @@
-import enum
 from werkzeug import security
 from flask_login import UserMixin
 from app import db
