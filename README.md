@@ -28,7 +28,7 @@ Access the database through the _psql_ command.
 
 Create a user named _coe134_ with password _coe134_ then grant all privileges on the database to this user.
 ```
-CREATE USER youruser WITH PASSWORD 'coe135';
+CREATE USER youruser WITH PASSWORD 'coe134';
 GRANT ALL PRIVILEGES ON DATABASE letsstudeee TO coe134;
 ```
 

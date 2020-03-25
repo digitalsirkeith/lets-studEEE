@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
-from .blueprints import root, verify, auth, org, changepw
+from app.blueprints import root, verify, auth, org, changepw
 app.register_blueprint(root.bp)
 app.register_blueprint(verify.bp)
 app.register_blueprint(auth.bp)
@@ -29,7 +29,9 @@ init_app(app)
 
 CORS(app)
 
-from app.models.user import User
+from app.models.user import *
+from app.models.org import *
+from app.models.feed import *
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))

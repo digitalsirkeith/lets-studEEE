@@ -9,7 +9,12 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(255), nullable=False, unique=True)
     password_hash = db.Column(db.String(255))
     contact_number = db.Column(db.String(255), nullable=False)
+    photo_url = db.Column(db.Text)
+    verified = db.Column(db.Boolean, default=False)
+
+    posts = db.relationship('Post', back_populates='author_user')
     roles = db.relationship('Role', secondary='user_roles')
+    organizations = db.relationship('OrganizationUser', back_populates='user')
 
     def __init__(self, username, email, password, contact_number):
         self.username = username
@@ -17,6 +22,7 @@ class User(UserMixin, db.Model):
         self.contact_number = contact_number
         self.set_password(password)
         self.roles = []
+        self.photo_url = None
 
     def set_password(self, password):
         self.password_hash = security.generate_password_hash(password)
@@ -34,6 +40,5 @@ class Role(db.Model):
 
 class UserRole(db.Model):
     __tablename__ = 'user_roles'
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id, ondelete='CASCADE'))
-    role_id = db.Column(db.Integer, db.ForeignKey(Role.id, ondelete='CASCADE'))
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id, ondelete='CASCADE'), primary_key=True)
+    role_id = db.Column(db.Integer, db.ForeignKey(Role.id, ondelete='CASCADE'), primary_key=True)

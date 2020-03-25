@@ -1,41 +1,53 @@
+import enum
 from app import db
+from app.models.user import User
+
+class OrganizationRank(enum.Enum):
+    owner = 1
+    admin = 2
+    active_member = 3
+    inactive_member = 4
+
+class OrganizationStatus(enum.Enum):
+    pending = 1
+    approved = 2
+    denied = 3
 
 class Organization(db.Model):
     __tablename__ = 'organizations'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    email = db.Column(db.String(255))
+    members = db.relationship('OrganizationUser', back_populates='organization')
+    posts = db.relationship('Post', back_populates='author_org')
+    photo_url = db.Column(db.Text)
+    verified = db.Column(db.Boolean, default=False)
+    status = db.Column(db.Enum(OrganizationStatus))
 
+    def __init__(self, name, email, owner, photo_url, status=OrganizationStatus.pending):
+        self.name = name
+        self.email = email
+        if owner:
+            self.members.append(OrganizationRank.create_owner(owner))
+        self.photo_url = photo_url
+        self.verified = False
+        self.status = status
 
-# class User(UserMixin, db.Model):
-#     __tablename__ = 'users'
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.Text, nullable=False, unique=True)
-#     email = db.Column(db.String(255), nullable=False, unique=True)
-#     password_hash = db.Column(db.String(255))
-#     contact_number = db.Column(db.String(255), nullable=False)
-#     roles = db.relationship('Role', secondary='user_roles')
+    @staticmethod
+    def none():
+        return Organization.get(1)
 
-#     def __init__(self, username, email, password, contact_number):
-#         self.username = username
-#         self.email = email
-#         self.contact_number = contact_number
-#         self.set_password(password)
-#         self.roles = []
+class OrganizationUser(db.Model):
+    __tablename__ = 'organization_user'
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id), primary_key=True)
+    organization_id = db.Column(db.Integer, db.ForeignKey(Organization.id), primary_key=True)
+    rank = db.Column(db.Enum(OrganizationRank))
 
-#     def set_password(self, password):
-#         self.password_hash = security.generate_password_hash(password)
+    user = db.relationship(User, back_populates='organizations')
+    organization = db.relationship(Organization, back_populates='members')
 
-#     def check_password(self, password):
-#         return security.check_password_hash(self.password_hash, password)
-
-# class Role(db.Model):
-#     __tablename__ = 'roles'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(50), unique=True)
-
-#     def __init__(self, name):
-#         self.name = name
-
-# class UserRole(db.Model):
-#     __tablename__ = 'user_roles'
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey(User.id, ondelete='CASCADE'))
-#     role_id = db.Column(db.Integer, db.ForeignKey(Role.id, ondelete='CASCADE'))
+    @staticmethod
+    def create_owner(owner):
+        association = OrganizationRank(rank=OrganizationRank.owner)
+        association.user = owner
+        return association
