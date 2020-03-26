@@ -1,7 +1,7 @@
 # Let's StudEEE
 
 Welcome to the repository for Let's StudEEE.
-
+    
 ## Installation
 ### Setting up the dev environment
 Create a virtual environment where you will install all modules necessary. A quick way to do this is:
