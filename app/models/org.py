@@ -35,7 +35,7 @@ class Organization(db.Model):
 
     @staticmethod
     def none():
-        return Organization.get(1)
+        return Organization.query.get(1)
 
 class OrganizationUser(db.Model):
     __tablename__ = 'organization_user'
