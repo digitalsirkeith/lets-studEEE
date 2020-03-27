@@ -1,0 +1,46 @@
+.is-darkgreen {
+     background-color: #133f29;
+     color: white;
+ }
+ 
+ .is-lightgreen {
+     background-color: rgb(70, 145, 88);
+     color: white;
+ }
+ 
+ .is-darkgreen h2 {
+     color: white;
+ }
+ 
+ .is-darkgreen h1 {
+     color: white;
+ }
+ 
+ body {
+     color: white;
+ }
+ 
+ .venue, .subject {
+     background-color: #133f29;
+     border-right:13px solid white;
+ }
+ 
+ .details p {
+     margin-left: 5px;
+ }
+ 
+ .join{
+     float: right;
+     /* bottom: 0; */
+ }
+ 
+ .join:hover{
+     float: right;
+     color: rgb(70, 145, 88);
+ }
+ 
+ .study img{
+     flex-shrink: 0;
+     min-width: 100%;
+     min-height: 1%
+ }
