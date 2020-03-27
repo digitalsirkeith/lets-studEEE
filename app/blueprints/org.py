@@ -14,14 +14,14 @@ def home():
 def create():
     flash('Create not implemented yet', 'error')
     return redirect(url_for('org.home'))
-    return render_template('study/org/home.html', user=current_user)
+    return render_template('study/org/create.html', user=current_user)
 
 @bp.route('/join', methods=('GET',))
 @login_required
 def join():
     flash('Join not implemented yet', 'error')
     return redirect(url_for('org.home'))
-    return render_template('study/org/home.html', user=current_user)
+    return render_template('study/org/join.html', user=current_user)
 
 
 
