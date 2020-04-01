@@ -31,6 +31,11 @@ Create a user named _coe134_ with password _coe134_ then grant all privileges on
 CREATE USER coe134 WITH PASSWORD 'coe134';
 GRANT ALL PRIVILEGES ON DATABASE letsstudeee TO coe134;
 ```
+Initialize the database
+```
+flask db upgrade
+flask init-db
+```
 
 ### Environment variables
 There is a `.env` file for environment variables such as admin credentials. For security, I did not include it in this repository. Contact me on setting this up.
