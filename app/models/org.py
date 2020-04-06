@@ -39,8 +39,8 @@ class Organization(db.Model):
 
 class OrganizationUser(db.Model):
     __tablename__ = 'organization_user'
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id), primary_key=True)
-    organization_id = db.Column(db.Integer, db.ForeignKey(Organization.id), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id, ondelete='CASCADE'), primary_key=True)
+    organization_id = db.Column(db.Integer, db.ForeignKey(Organization.id, ondelete='CASCADE'), primary_key=True)
     rank = db.Column(db.Enum(OrganizationRank))
 
     user = db.relationship(User, back_populates='organizations')

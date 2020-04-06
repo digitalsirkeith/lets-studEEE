@@ -32,6 +32,8 @@ CORS(app)
 from app.models.user import *
 from app.models.org import *
 from app.models.feed import *
+from app.models.study import *
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
