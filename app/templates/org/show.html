@@ -46,5 +46,39 @@
         </div>
         <div class="column"></div>
     </div>
+    {% if user.organizations|length > 0 %}
+    <div class="columns">
+        <div class="column">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for association in user.organizations %}
+                    <tr>
+                        <th>{{ association.organization.id }}</td>
+                        <td>{{ association.organization.name }}</td>
+                        <td>{{ association.organization.email }}</td>
+                        <td></td>
+                        {% if association.organization.status == status.pending %}
+                            <td>pending</td>
+                        {% elif association.organization.status == status.approved %}
+                            <td>approved</td>
+                        {% else %}
+                            <td>status</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
 </section>
 {% endblock %}

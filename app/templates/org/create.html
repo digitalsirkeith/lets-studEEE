@@ -1,5 +1,45 @@
 {% extends 'base.html' %} {% block content %}
 
-Create org
-
+<section class="hero has-text-left is-black">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Create Organization
+            </h1>
+            <h2 class="subtitle">
+                Create a new organization in this page
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-one-half">
+            <h1 class="title">Create Organization</h1>
+            <form class="form" method="POST">
+                {{form.csrf_token}}
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.name(class_="input", placeholder="Organization Name")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.email(class_="input", id="signup-email", placeholder="Organization Email", type="email")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.description(class_="textarea", placeholder="About the organization")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <button class="button is-fullwidth is-dark">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="column"></div>
+    </div>
+</section>
 {% endblock %}

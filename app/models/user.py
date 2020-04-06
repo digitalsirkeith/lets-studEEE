@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
         self.set_password(password)
         self.roles = []
         self.photo_url = None
+        self.verified = False
 
     def set_password(self, password):
         self.password_hash = security.generate_password_hash(password)
