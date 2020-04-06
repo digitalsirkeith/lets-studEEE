@@ -22,6 +22,7 @@ class Organization(db.Model):
     posts = db.relationship('Post', back_populates='author_org')
     photo_url = db.Column(db.Text)
     status = db.Column(db.Enum(OrganizationStatus))
+    # description = db.Column(db.Text)
 
     def __init__(self, name, email, owner, photo_url, status=OrganizationStatus.pending):
         self.name = name
