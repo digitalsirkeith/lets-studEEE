@@ -16,6 +16,7 @@ app.config.from_mapping(
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
+CORS(app)
 
 from app.blueprints import root, verify, auth, org, changepw
 app.register_blueprint(root.bp)
@@ -26,8 +27,6 @@ app.register_blueprint(changepw.bp)
 
 from app.database import init_app
 init_app(app)
-
-CORS(app)
 
 from app.models.user import *
 from app.models.org import *

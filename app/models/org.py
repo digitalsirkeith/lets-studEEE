@@ -21,7 +21,6 @@ class Organization(db.Model):
     members = db.relationship('OrganizationUser', back_populates='organization')
     posts = db.relationship('Post', back_populates='author_org')
     photo_url = db.Column(db.Text)
-    verified = db.Column(db.Boolean, default=False)
     status = db.Column(db.Enum(OrganizationStatus))
 
     def __init__(self, name, email, owner, photo_url, status=OrganizationStatus.pending):
@@ -30,7 +29,6 @@ class Organization(db.Model):
         if owner:
             self.members.append(OrganizationRank.create_owner(owner))
         self.photo_url = photo_url
-        self.verified = False
         self.status = status
 
     @staticmethod
