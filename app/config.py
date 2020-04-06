@@ -11,7 +11,7 @@ SECRET_KEY      = getenv('SECRET_KEY')
 DATABASE_NAME   = getenv('DATABASE_NAME')
 
 if environment == 'development':
-    DATABASE_URI    = f'postgresql://{USER}@localhost/{DATABASE_NAME}'
+    DATABASE_URI    = f'postgresql://{USER}:{SECRET_KEY}@localhost/{DATABASE_NAME}'
 else:
     DATABASE_URI    = getenv(f'DATABASE_URL')
 
