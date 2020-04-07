@@ -55,8 +55,11 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Position</th>
                         <th>Description</th>
                         <th>Status</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,14 +68,11 @@
                         <th>{{ association.organization.id }}</td>
                         <td>{{ association.organization.name }}</td>
                         <td>{{ association.organization.email }}</td>
-                        <td></td>
-                        {% if association.organization.status == status.pending %}
-                            <td>pending</td>
-                        {% elif association.organization.status == status.approved %}
-                            <td>approved</td>
-                        {% else %}
-                            <td>status</td>
-                        {% endif %}
+                        <td>{{ association.rank.name }}</td>
+                        <td>{{ association.organization.description }}</td>
+                        <td>{{ association.organization.status.name }}</td>
+                        <td><a href="{{ url_for('org.view', id=association.organization.id) }}">View</a></td>
+                        <td><a href="{{ url_for('org.edit', id=association.organization.id) }}">Edit</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

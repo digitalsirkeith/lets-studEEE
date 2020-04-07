@@ -1,9 +1,5 @@
 from os import getenv
 
-environment = getenv('FLASK_ENV')
-if environment is None:
-    raise KeyError
-
 class Config:
     DEBUG = False
     TESTING = False
@@ -23,8 +19,3 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-
-if __name__ == '__main__':
-    print(f'USER: {USER}')
-    print(f'SECRET_KEY: {SECRET_KEY}')
-    print(f'DATABASE_URI: {DATABASE_URI}')

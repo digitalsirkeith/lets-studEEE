@@ -12,6 +12,7 @@ class OrganizationStatus(enum.Enum):
     pending = 1
     approved = 2
     denied = 3
+    dissolved = 4
 
 class OrganizationUser(db.Model):
     __tablename__ = 'organization_user'
@@ -37,15 +38,16 @@ class Organization(db.Model):
     posts = db.relationship('Post', back_populates='author_org')
     photo_url = db.Column(db.Text)
     status = db.Column(db.Enum(OrganizationStatus))
-    # description = db.Column(db.Text)
+    description = db.Column(db.Text)
 
-    def __init__(self, name, email, owner, photo_url, status=OrganizationStatus.pending):
+    def __init__(self, name, email, owner, photo_url, description, status=OrganizationStatus.pending):
         self.name = name
         self.email = email
         if owner:
             self.members.append(OrganizationUser.create_owner(owner))
         self.photo_url = photo_url
         self.status = status
+        self.description = description
 
     @staticmethod
     def none():

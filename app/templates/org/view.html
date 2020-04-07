@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="section">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column">
+            <article class="panel is-dark">
+                <p class="panel-heading">
+                    <span class="tag is-white">{{organization.id}}</span>
+                    {{ organization.name }}
+                </p>
+                <a class="panel-block">{{organization.email}}</a>
+                <a class="panel-block">{{rank.name}}</a>
+                <a class="panel-block">{{organization.description}}</a>
+                <a class="panel-block">{{organization.status.name}}</a>
+                <div class="panel-block">
+                    <a class="button is-link is-outlined is-fullwidth"
+                        href="{{ url_for('org.edit', id=organization.id) }}">
+                        Edit
+                    </a>
+                    <a class="button is-danger is-outlined  is-fullwidth"
+                        href="{{ url_for('org.edit', id=organization.id) }}">
+                        Delete
+                    </a>
+                </div>
+            </article>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
+
+{% endblock %}

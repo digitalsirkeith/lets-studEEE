@@ -1,5 +1,45 @@
 {% extends 'base.html' %} {% block content %}
 
-Edit org
-
+<section class="hero has-text-left is-black">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Edit Organization
+            </h1>
+            <h2 class="subtitle">
+                Edit the organization in this page
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-one-half">
+            <h1 class="title">Edit Organization</h1>
+            <div class="field">
+                <div class="control is-expanded">
+                    <input class="input" value="{{ organization.name}}" disabled />
+                </div>
+            </div>
+            <div class="field">
+                <div class="control is-expanded">
+                    <input class="input" value="{{ organization.email}}" disabled />
+                </div>
+            </div>
+            <form class="form" method="POST">
+                {{form.csrf_token}}
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.description(class_="textarea", placeholder="About the org")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <button class="button is-fullwidth is-dark">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="column"></div>
+    </div>
+</section>
 {% endblock %}
