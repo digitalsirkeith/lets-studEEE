@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 import os
-from app.config import Config
+from app.config import DevelopmentConfig, ProductionConfig
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -10,9 +10,13 @@ from flask_login import LoginManager
 
 db = SQLAlchemy()
 
-def create_app(config_class=Config):
+def create_app(config_class=ProductionConfig):
     app = Flask(__name__)
-    app.config.from_object(config_class)
+
+    if getenv('FLASK_ENV') == 'development':
+        app.config.from_object(DevelopmentConfig)
+    else:
+        app.config.from_object(config_class)
 
     with app.app_context():
         db.init_app(app)
