@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
-<section class="hero has-text-left is-black">
+<section class="hero has-text-left is-darkgreen">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title">
-                SCHEDULE A REVIEW
+            <h1 class="title title-upper">
+                schedule a review
             </h1>
             <h2 class="subtitle">
                 Schedule a review in this page
@@ -15,37 +15,39 @@
 <section class="section">
     <div class="columns">
         <div class="column"></div>
-        <div class="column is-one-half">
-            <h1 class="title">Schedule a Review</h1>
+        <div class="column">
             <form class="form" method="POST">
                 {{form.csrf_token}}
                 <div class="field">
+                    <span class="label-input">Subject Name</span>
                     <div class="control is-expanded">
-                        {{form.subject(class_="input", placeholder="Subject Name")}}
+                        {{form.name(class_="input-form", placeholder="Enter Name Here")}}
                     </div>
                 </div>
                 <div class="field">
+                    <span class="label-input">Date</span>
                     <div class="control is-expanded">
-                        {{form.sched(class_="input", placeholder="Date of Review")}}
+                        {{form.name(class_="date-form")}}
                     </div>
                 </div>
                 <div class="field">
+                    <span class="label-input">Venue</span>
                     <div class="control is-expanded">
-                        {{form.venue(class_="input", placeholder="Venue")}}
+                        {{form.name(class_="input-form", placeholder="Enter Venue Here")}}
                     </div>
                 </div>
                 <div class="field">
+                    <span class="label-input">About the Review</span>
                     <div class="control is-expanded">
-                        {{form.description(class_="textarea", placeholder="About the review")}}
+                        {{form.description(class_="textarea-form", placeholder="Enter description here")}}
                     </div>
                 </div>
                 <div class="field">
-                    <button class="button is-fullwidth is-dark">Submit</button>
+                    <button class="button is-darkgreen join">Submit</button>
                 </div>
             </form>
         </div>
         <div class="column"></div>
     </div>
 </section>
-
 {% endblock %}

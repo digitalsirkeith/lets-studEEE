@@ -11,9 +11,9 @@
 .label-input {
      font-family: Poppins-SemiBold;
      font-size: 25px;
-     color: #999999;
+     color: #5e5d5d;
      line-height: 1.5;
-     padding-left: 5px;
+     letter-spacing: 1.14px;
      text-align: left;
 }
 
@@ -27,12 +27,17 @@
 }
 
 .textarea-form {
+     resize: none;
      font-size: 20px;
      border: none;
      border-bottom: 2px solid #dfdfdf;
      background: transparent;
      text-align: center;
      width: 100%;
+}
+
+.date-form {
+     
 }
 
 input:focus::-webkit-input-placeholder { color:transparent; }
@@ -46,43 +51,51 @@ textarea:focus::-moz-placeholder { color:transparent; }
 textarea:focus:-ms-input-placeholder { color:transparent; }
 
 input::-webkit-input-placeholder { 
-     font-family: Poppins-Regular;  
+     font-family: Poppins-Regular;
+     font-size: 14px; 
      text-align: left;
      color: #555555;
 }
 input:-moz-placeholder { 
      font-family: Poppins-Regular;
+     font-size: 14px; 
      text-align: left;  
      color: #555555;
 }
 input::-moz-placeholder { 
-     font-family: Poppins-Regular;  
+     font-family: Poppins-Regular; 
+     font-size: 14px;  
      text-align: left;
      color: #555555;
 }
 input:-ms-input-placeholder { 
      font-family: Poppins-Regular;  
+     font-size: 14px; 
      text-align: left;
      color: #555555;
 }
 
 textarea::-webkit-input-placeholder { 
      font-family: Poppins-Regular;  
+     font-size: 14px; 
      text-align: left;
      color: #555555;
 }
 textarea:-moz-placeholder { 
      font-family: Poppins-Regular; 
+     font-size: 14px; 
      text-align: left; 
      color: #555555;
 }
 textarea::-moz-placeholder { 
-     font-family: Poppins-Regular;  
+     font-family: Poppins-Regular; 
+     font-size: 14px;  
      text-align: left;
      color: #555555;
 }
 textarea:-ms-input-placeholder { 
      font-family: Poppins-Regular; 
+     font-size: 14px; 
      text-align: left; 
      color: #555555;
 }

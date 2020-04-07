@@ -3,7 +3,7 @@
 <section class="hero has-text-left is-darkgreen">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title">
+            <h1 class="title title-upper">
                 Create Organization
             </h1>
             <h2 class="subtitle">
@@ -15,8 +15,7 @@
 <section class="section">
     <div class="columns">
         <div class="column"></div>
-        <div class="column is-one-half">
-            <h1 class="title">Create Organization</h1>
+        <div class="column">
             <form class="form" method="POST">
                 {{form.csrf_token}}
                 <div class="field">
@@ -24,21 +23,24 @@
                     <div class="control is-expanded">
                         {{form.name(class_="input-form", placeholder="Enter Name Here")}}
                     </div>
+                    <div class="spacing"></div>
                 </div>
                 <div class="field">
                     <span class="label-input">Organization Email</span>
                     <div class="control is-expanded">
                         {{form.email(class_="input-form", id="signup-email", placeholder="Enter Email Here", type="email")}}
                     </div>
+                    <div class="spacing"></div>
                 </div>
                 <div class="field">
                     <span class="label-input">About the Organization</span>
                     <div class="control is-expanded">
                         {{form.description(class_="textarea-form", placeholder="Enter description here")}}
                     </div>
+                    <div class="spacing"></div>
                 </div>
                 <div class="field">
-                    <button class="button is-fullwidth is-dark">Submit</button>
+                    <button class="button is-darkgreen my-button">Submit</button>
                 </div>
             </form>
         </div>

@@ -8,8 +8,13 @@
     src: url('../fonts/MONTSERRAT-REGULAR.TTF');
 }
 
+.spacing {
+    padding-bottom: 15px;
+}
+
 .title-upper {
     text-transform: uppercase;
+    letter-spacing: 2.16px;
 }
 
 .title {
@@ -32,12 +37,12 @@
 .is-lightgreen {
     background-color: rgb(70, 145, 88);
     color: white;
-    border: 1px solid #5e5d5d;
+    border: 3px solid #5e5d5d;
 }
 .is-lightgreen-2 {
     background-color: rgb(47, 95, 58);
     color: white;
-    border: 2px solid #000000;
+    border: 3px solid #5e5d5d;
 }
 .is-gray {
     background-color: #5e5d5d;
@@ -68,12 +73,12 @@
     margin-left: 5px;
 }
 
-.join{
+.my-button{
     float: right;
-    /* bottom: 0; */
+    border-radius: 20px;
 }
 
-.join:hover{
+.my-button:hover{
     float: right;
     color: rgb(70, 145, 88);
 }
