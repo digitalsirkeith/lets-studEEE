@@ -64,7 +64,7 @@ class StudySessionTopic(db.Model):
     topic_id = db.Column(db.Integer, db.ForeignKey(Topic.id, ondelete='CASCADE'), primary_key=True)
     study_session_id = db.Column(db.Integer, db.ForeignKey(StudySession.id, ondelete='CASCADE'), primary_key=True)
 
-class StudySessionMembers(db.Model):
+class StudySessionMember(db.Model):
     __tablename__ = 'study_session_members'
 
     study_session_id = db.Column(db.Integer, db.ForeignKey(StudySession.id, ondelete='CASCADE'), primary_key=True)
