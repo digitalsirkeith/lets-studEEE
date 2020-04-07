@@ -12,7 +12,6 @@ class OrganizationStatus(enum.Enum):
     pending = 1
     approved = 2
     denied = 3
-    dissolved = 4
 
 class OrganizationUser(db.Model):
     __tablename__ = 'organization_user'

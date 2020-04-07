@@ -15,7 +15,3 @@ class CreateOrgForm(FlaskForm):
 class EditOrgForm(FlaskForm):
     # TODO: Add photo_url
     description = StringField('description', widget=TextArea(), validators=[DataRequired()])
-
-class DeleteOrgForm(FlaskForm):
-    # do we need this?
-    id = HiddenField('id', validators=[DataRequired()])
