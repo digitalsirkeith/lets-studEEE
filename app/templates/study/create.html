@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="hero has-text-left is-black">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                SCHEDULE A REVIEW
+            </h1>
+            <h2 class="subtitle">
+                Schedule a review in this page
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-one-half">
+            <h1 class="title">Schedule a Review</h1>
+            <form class="form" method="POST">
+                {{form.csrf_token}}
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.subject(class_="input", placeholder="Subject Name")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.sched(class_="input", placeholder="Date of Review")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.venue(class_="input", placeholder="Venue")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control is-expanded">
+                        {{form.description(class_="textarea", placeholder="About the review")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <button class="button is-fullwidth is-dark">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="column"></div>
+    </div>
+</section>
+
+{% endblock %}

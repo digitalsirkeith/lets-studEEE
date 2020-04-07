@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<section class="hero has-text-left is-black">
+<section class="hero has-text-left is-darkgreen">
     <div class="hero-body">
         <div class="container">
             <h1 class="title">
@@ -20,18 +20,21 @@
             <form class="form" method="POST">
                 {{form.csrf_token}}
                 <div class="field">
+                    <span class="label-input">Organization Name</span>
                     <div class="control is-expanded">
-                        {{form.name(class_="input", placeholder="Organization Name")}}
+                        {{form.name(class_="input-form", placeholder="Enter Name Here")}}
                     </div>
                 </div>
                 <div class="field">
+                    <span class="label-input">Organization Email</span>
                     <div class="control is-expanded">
-                        {{form.email(class_="input", id="signup-email", placeholder="Organization Email", type="email")}}
+                        {{form.email(class_="input-form", id="signup-email", placeholder="Enter Email Here", type="email")}}
                     </div>
                 </div>
                 <div class="field">
+                    <span class="label-input">About the Organization</span>
                     <div class="control is-expanded">
-                        {{form.description(class_="textarea", placeholder="About the organization")}}
+                        {{form.description(class_="textarea-form", placeholder="Enter description here")}}
                     </div>
                 </div>
                 <div class="field">

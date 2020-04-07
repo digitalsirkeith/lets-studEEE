@@ -1,3 +1,29 @@
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url('../fonts/MONTSERRAT-SEMIBOLD.TTF');
+}
+
+@font-face {
+    font-family: Montserrat-Reg;
+    src: url('../fonts/MONTSERRAT-REGULAR.TTF');
+}
+
+.title-upper {
+    text-transform: uppercase;
+}
+
+.title {
+    font-family: Montserrat-Bold;
+}
+
+.subtitle {
+    font-family: Montserrat-Reg;
+}
+
+.content {
+    text-align: justify;
+}
+
 /* BACKGROUND STYLES */
 .is-darkgreen {
     background-color: #133f29;
@@ -6,10 +32,16 @@
 .is-lightgreen {
     background-color: rgb(70, 145, 88);
     color: white;
+    border: 1px solid #5e5d5d;
 }
 .is-lightgreen-2 {
     background-color: rgb(47, 95, 58);
     color: white;
+    border: 2px solid #000000;
+}
+.is-gray {
+    background-color: #5e5d5d;
+    color: #fff;
 }
 .is-darkgreen h2 {
     color: white;
