@@ -13,7 +13,7 @@ db = SQLAlchemy()
 def create_app(config_class=ProductionConfig):
     app = Flask(__name__)
 
-    if getenv('FLASK_ENV') == 'development':
+    if os.getenv('FLASK_ENV') == 'development':
         app.config.from_object(DevelopmentConfig)
     else:
         app.config.from_object(config_class)
