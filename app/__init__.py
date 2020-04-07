@@ -7,8 +7,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_login import LoginManager
+from dropbox import Dropbox
 
 db = SQLAlchemy()
+dropbox = Dropbox(os.getenv('DBX_ACCESS_TOKEN'))
 
 def create_app(config_class=ProductionConfig):
     app = Flask(__name__)
