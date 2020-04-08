@@ -31,6 +31,9 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return security.check_password_hash(self.password_hash, password)
 
+    def cloud_dir(self):
+        return f'/user/{self.id:06d}.png'
+
 class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)

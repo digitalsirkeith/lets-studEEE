@@ -2,7 +2,10 @@ from flask import Blueprint, render_template, request, session, flash, url_for, 
 from flask_login import login_required, current_user
 from app.forms.org import *
 from app.models.org import Organization, OrganizationStatus, OrganizationRank, OrganizationUser
+from app.library import cloud
 from app import db
+import uuid
+import os
 
 bp = Blueprint('org', __name__, url_prefix='/org')
 
@@ -23,12 +26,16 @@ def create():
                 name=create_org_form.name.data,
                 email=create_org_form.email.data,
                 owner=current_user,
-                photo_url='',
                 description=create_org_form.description.data
             )
             
             db.session.add(new_org)
             db.session.commit()
+            file_name = f'{uuid.uuid4()}.png'
+            create_org_form.photo.data.save(file_name)
+            cloud.upload_photo(new_org, file_name)
+            db.session.commit()
+            os.remove(file_name)
 
             flash('New organization created! Wait for approval from the website administration', 'info')
             
@@ -63,9 +70,16 @@ def edit(id):
         if edit_org_form.validate():
             if organization:
                 organization.description = edit_org_form.description.data
+                file_name = f'{uuid.uuid4()}.png'
+                edit_org_form.photo.data.save(file_name)
+                cloud.upload_photo(organization, file_name)
                 db.session.commit()
+                os.remove(file_name)
             else:
                 flash('Org not found!', 'error')
+        else:
+            for _, messages in edit_org_form.errors.items():
+                flash(_ + '. '.join(messages), 'error')
         return redirect(url_for('org.home'))
 
 @bp.route('/view/<int:id>', methods=('GET',))

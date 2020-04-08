@@ -39,15 +39,17 @@ class Organization(db.Model):
     status = db.Column(db.Enum(OrganizationStatus))
     description = db.Column(db.Text)
 
-    def __init__(self, name, email, owner, photo_url, description, status=OrganizationStatus.pending):
+    def __init__(self, name, email, owner, description, status=OrganizationStatus.pending):
         self.name = name
         self.email = email
         if owner:
             self.members.append(OrganizationUser.create_owner(owner))
-        self.photo_url = photo_url
         self.status = status
         self.description = description
 
     @staticmethod
     def none():
         return Organization.query.get(1)
+
+    def cloud_dir(self):
+        return f'/org/{self.id:06d}.png'

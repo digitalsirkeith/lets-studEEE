@@ -17,7 +17,7 @@
         <div class="column"></div>
         <div class="column is-one-half">
             <h1 class="title">Create Organization</h1>
-            <form class="form" method="POST">
+            <form class="form" method="POST" enctype="multipart/form-data">
                 {{form.csrf_token}}
                 <div class="field">
                     <div class="control is-expanded">
@@ -32,6 +32,22 @@
                 <div class="field">
                     <div class="control is-expanded">
                         {{form.description(class_="textarea", placeholder="About the organization")}}
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <div class="file is-right is-fullwidth has-name">
+                            <label class="file-label">
+                                {{form.photo(class_="file-input")}}
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                      <i class="fa fa-image"></i>
+                                    </span>
+                                    <span class="file-label">Upload Org Photo</span>
+                                </span>
+                                <span class="file-name" id="file-name">Select File</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="field">
