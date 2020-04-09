@@ -14,11 +14,11 @@
 
 .title-upper {
     text-transform: uppercase;
-    letter-spacing: 2.16px;
 }
 
-.title {
+.title, .title-upper {
     font-family: Montserrat-Bold;
+    letter-spacing: 2.16px;
 }
 
 .subtitle {
@@ -30,6 +30,9 @@
 }
 
 /* BACKGROUND STYLES */
+.is-bordered {
+    border: 3px solid #5e5d5d;
+}
 .is-darkgreen {
     background-color: #133f29;
     color: white;
@@ -37,12 +40,10 @@
 .is-lightgreen {
     background-color: rgb(70, 145, 88);
     color: white;
-    border: 3px solid #5e5d5d;
 }
 .is-lightgreen-2 {
     background-color: rgb(47, 95, 58);
     color: white;
-    border: 3px solid #5e5d5d;
 }
 .is-gray {
     background-color: #5e5d5d;
