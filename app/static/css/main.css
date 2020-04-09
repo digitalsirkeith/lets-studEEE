@@ -76,6 +76,11 @@
     letter-spacing: 5px;
 }
 
+.title-upper-nospace {
+    text-transform: uppercase;
+    letter-spacing: 1.14px;
+}
+
 .title-mini {
     font-family: Montserrat-Bold;
     font-size: 18px;
