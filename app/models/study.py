@@ -1,5 +1,5 @@
 from app import db
-from app.models.feed import Post
+from app.models.forum import Post
 from app.models.user import User
 
 class Topic(db.Model):

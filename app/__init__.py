@@ -38,7 +38,7 @@ def create_app(config_class=ProductionConfig):
 
         from app.models.user import User, Role, UserRole
         from app.models.org import Organization, OrganizationUser
-        from app.models.feed import Post, Comment
+        from app.models.forum import Post, Comment
         from app.models.study import Topic, StudySession, StudySessionRating, StudySessionTopic, StudySessionMember
 
         @login_manager.user_loader
