@@ -45,13 +45,28 @@ def create():
 
         return redirect(url_for('org.home'))
 
-@bp.route('/join', methods=('GET', 'POST'))
+@bp.route('/join/<int:id>', methods=('POST',))
 @login_required
-def join():
-    if request.method == 'GET':
-        return render_template('org/join.html', user=current_user)
+def join(id):
+    join_org_form = JoinOrgForm()
+
+    if join_org_form.validate():
+        organization = Organization.query.get(id)
+        if organization:
+            organization.add_applicant(current_user)
+            db.session.commit()
+        else:
+            flash('Org not found!', 'error')
     else:
-        return redirect(url_for('org.home'))
+        for _, messages in join_org_form.errors.items():
+            flash(_ + '. '.join(messages), 'error')
+    
+    return redirect(url_for('org.home'))
+
+@bp.route('/show', methods=('GET',))
+@login_required
+def show():
+    return render_template('org/show.html', user=current_user, organizations=Organization.query.all(), form=JoinOrgForm())
 
 @bp.route('/edit/<int:id>', methods=('GET', 'POST'))
 @login_required

@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="hero has-text-left is-darkgreen">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title title-upper">
+                All Organizations
+            </h1>
+            <h2 class="subtitle">
+                All verified organizations are listed here
+                <!-- A study date application for university students. -->
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section">
+    {% if organizations|length > 0 %}
+    <div class="column">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for organization in organizations[1:] %}
+                <tr>
+                    <th>{{ organization.id }}</td>
+                    <td>{{ organization.name }}</td>
+                    <td>{{ organization.email }}</td>
+                    <td>{{ organization.description }}</td>
+                    <td>{{ organization.status.name }}</td>
+                    <td><a href="{{ url_for('org.view', id=organization.id) }}">View</a></td>
+                    <form method="POST" action="{{url_for('org.join', id=organization.id)}}">
+                        {{ form.csrf_token }}
+                        <td><button class="button is-small">Join</button></td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

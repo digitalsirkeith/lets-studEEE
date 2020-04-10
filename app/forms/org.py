@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Email, InputRequired
 from wtforms.widgets import TextArea
 
 class JoinOrgForm(FlaskForm):
-    id = HiddenField('id', validators=[DataRequired()])
+    pass
 
 class CreateOrgForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(), InputRequired()])
