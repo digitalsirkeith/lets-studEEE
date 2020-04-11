@@ -26,13 +26,15 @@ def create_app(config_class=ProductionConfig):
         login_manager = LoginManager(app)
         CORS(app)
 
-        from app.blueprints import root, verify, auth, org, changepw, study
+        from app.blueprints import root, verify, auth, org, changepw, study, forum, admin
         app.register_blueprint(root.bp)
         app.register_blueprint(verify.bp)
         app.register_blueprint(auth.bp)
         app.register_blueprint(org.bp)
         app.register_blueprint(changepw.bp)
         app.register_blueprint(study.bp)
+        app.register_blueprint(forum.bp)
+        app.register_blueprint(admin.bp)
 
         from app.database import init_app
         init_app(app)

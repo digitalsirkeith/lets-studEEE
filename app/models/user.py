@@ -2,6 +2,14 @@ from werkzeug import security
 from flask_login import UserMixin
 from app import db
 
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True)
+
+    def __init__(self, name):
+        self.name = name
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -34,13 +42,8 @@ class User(UserMixin, db.Model):
     def cloud_dir(self):
         return f'/user/{self.id:06d}.png'
 
-class Role(db.Model):
-    __tablename__ = 'roles'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True)
-
-    def __init__(self, name):
-        self.name = name
+    # def is_admin(self):
+    #     return Role.query.filter(Role.name == 'admin').one() in self.roles
 
 class UserRole(db.Model):
     __tablename__ = 'user_roles'
