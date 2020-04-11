@@ -42,8 +42,9 @@ class User(UserMixin, db.Model):
     def cloud_dir(self):
         return f'/user/{self.id:06d}.png'
 
-    # def is_admin(self):
-    #     return Role.query.filter(Role.name == 'admin').one() in self.roles
+    @property
+    def is_admin(self):
+        return Role.query.filter(Role.name == 'admin').one() in self.roles
 
 class UserRole(db.Model):
     __tablename__ = 'user_roles'

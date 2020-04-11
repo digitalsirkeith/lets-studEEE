@@ -54,12 +54,14 @@
                 </span>
                 <span>Forum</span>
             </a>
+            {% if user.is_admin %}
             <a href="{{ url_for('admin.home') }}" class="navbar-item">
                 <span class="icon">
                     <i class="fa fa-exclamation-triangle"></i>
                 </span>
                 <span>Admin</span>
             </a>
+            {% endif %}
             <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link is-arrowless">
                     <span class="icon has-text-danger">
